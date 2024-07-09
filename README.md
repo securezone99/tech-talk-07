@@ -14,17 +14,19 @@ pip install -r meetup_assistants/requirements.txt
 cd meetup_assistants/app
 ```
 
-### Update all Keys in .env
-## Groq Cloud Key: https://console.groq.com/
+## Update all Keys in .env
+### Create a free account on: https://console.groq.com/
 
 
-### start locally
+# Start locally
 
 ```shell
 python -B -m uvicorn main:app --reload --log-level info
 ```
 
 # Build and Push Image to Dockerhub (Free of Charge for one Private account)
+### Create a free account on: https://hub.docker.com/
+
 ```shell
 sudo docker build -t xxx/xxx:1.1.1.1 .
 sudo docker push xxx/xxx:1.1.1.1
