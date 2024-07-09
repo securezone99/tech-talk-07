@@ -15,6 +15,8 @@ cd meetup_assistants/app
 ```
 
 ### Update all Keys in .env
+## Groq Cloud Key: https://console.groq.com/
+
 
 ### start locally
 
