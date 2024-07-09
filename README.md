@@ -28,6 +28,3 @@ sudo docker build -t xxx/xxx:1.1.1.1 .
 sudo docker push xxx/xxx:1.1.1.1
 ```
 
-# Azure Container App repo setting
-
-
