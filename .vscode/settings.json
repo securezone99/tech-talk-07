@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/b13a3dff-8caf-428a-9fe9-063d8b852965/resourceGroups/digitaldrift/providers/Microsoft.Web/sites/digitaldrift",
+    "appService.deploySubpath": "meetup_assistants/app"
+}
