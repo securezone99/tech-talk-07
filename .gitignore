@@ -1,4 +1,4 @@
-meetup_assistants/assistant_output/x_articles.json
+meetup_assistants/assistant/completeness_agents/output/assistant_output.json
 x_venv
 .env
 .cache/
