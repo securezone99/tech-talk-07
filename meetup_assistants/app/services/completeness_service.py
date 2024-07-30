@@ -1,42 +1,20 @@
-import json
-import logging
-import os
+import json, logging
+from typing import List
+
+from assistants.completeness_agents.completeness_agents_chat import AgentsExecutor
+from models.completeness_message import CompletenessMessage
 
 class CompletenessService:
     def __init__(self):
         pass
 
-    
-    def save_file(self, file_name: str, content: str) -> str:
-        file_path = os.path.join(os.getcwd(), file_name)
+    def execute_completeness_agents(self, completenessMessage: CompletenessMessage) -> str:
         try:
-            with open(file_path, 'w') as file:
-                file.write(content)
-            logging.info(f"Saved file: {file_path}")
-            return f"Saved file: {file_path}"
-        except Exception as e:
-            logging.error(f"Failed to save file: {e}")
-            return f"Failed to save file: {e}"
+            # Using Pydantic's model_dump_json() method to serialize the object
+            completenessMessageJson = completenessMessage.model_dump_json()
+            agents_result = AgentsExecutor().execute_completeness_agents_in_sequence(completenessMessageJson)
+        except json.JSONDecodeError as e:
+            logging.error(f"Failed to decode JSON: {e}")
+            return "Not valid JSON Format. Please try again."
 
-    def delete_file(self, file_path: str) -> str:
-        if os.path.exists(file_path):
-            os.remove(file_path)
-            logging.info(f"Deleted file: {file_path}")
-            return f"Deleted file: {file_path}"
-        else:
-            logging.info(f"File does not exist: {file_path}")
-            return f"File does not exist: {file_path}"
-        
-    def load_json_file(self, file_name: str) -> dict:
-        file_path = os.path.join(os.getcwd(), file_name)
-        if not os.path.exists(file_path):
-            logging.info(f"File does not exist: {file_path}")
-            return {"error": "File does not exist"}
-        try:
-            with open(file_path, 'r') as file:
-                content = json.load(file)
-            logging.info(f"Loaded JSON file: {file_path}")
-            return content
-        except Exception as e:
-            logging.error(f"Failed to load JSON file: {e}")
-            return {"error": f"Failed to load JSON file: {e}"}
+        return agents_result
